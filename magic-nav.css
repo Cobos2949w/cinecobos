@@ -1,0 +1,24 @@
+.magic-nav {
+    position: relative;
+    display: inline-flex; /* Para que el indicador se ajuste al contenido */
+}
+
+.magic-nav .nav-item {
+    position: relative;
+}
+
+.magic-nav .nav-item .nav-link {
+    position: relative;
+    z-index: 1; /* Asegura que el texto esté encima del indicador */
+}
+
+.magic-indicator {
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Ajusta la posición vertical del indicador */
+    width: 0;
+    height: 5px; /* Ajusta la altura del indicador */
+    background: yellow; /* Cambia el color del indicador si lo deseas */
+    border-radius: 5px 5px 0 0; /* Opcional: bordes redondeados en la parte superior */
+    transition: all 0.3s ease-in-out;
+}

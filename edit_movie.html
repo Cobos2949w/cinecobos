@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{# Elimina esta línea: {% from 'bootstrap5/form.html' import render_field %} #}
+
+{% block title %}Editar Película{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Editar Película</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+
+        <div class="mb-3">
+            {{ form.titulo.label(class="form-label") }}
+            {{ form.titulo(class="form-control") }}
+            {% for error in form.titulo.errors %}
+                <div class="form-text text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            {{ form.genero.label(class="form-label") }}
+            {{ form.genero(class="form-control") }}
+            {% for error in form.genero.errors %}
+                <div class="form-text text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            {{ form.sinopsis.label(class="form-label") }}
+            {{ form.sinopsis(class="form-control", rows="5") }}
+            {% for error in form.sinopsis.errors %}
+                <div class="form-text text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Imagen Actual</label>
+            {% if pelicula.imagen %}
+                <img src="/{{ pelicula.imagen }}" alt="Imagen actual de {{ pelicula.titulo }}" style="max-width: 150px;">
+            {% else %}
+                <p>No hay imagen actual.</p>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.imagen.label(class="form-label") }}
+            {{ form.imagen(class="form-control") }}
+            {% for error in form.imagen.errors %}
+                <div class="form-text text-danger">{{ error }}</div>
+            {% endfor %}
+            <div class="form-text">Puedes seleccionar una nueva imagen para reemplazar la actual.</div>
+        </div>
+
+        <div class="mb-3">
+            {{ form.estado.label(class="form-label") }}
+            {{ form.estado(class="form-select") }}
+            {% for error in form.estado.errors %}
+                <div class="form-text text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            {{ form.fecha.label(class="form-label") }}
+            {{ form.fecha(class="form-control") }}
+            {% for error in form.fecha.errors %}
+                <div class="form-text text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            {{ form.trailer_url.label(class="form-label") }}
+            {{ form.trailer_url(class="form-control") }}
+            {% for error in form.trailer_url.errors %}
+                <div class="form-text text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        {{ form.submit(class="btn btn-primary") }}
+        <a href="{{ url_for('admin') }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
